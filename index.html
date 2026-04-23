@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>ElectWise — AI-Powered Election Assistant</title>
+    <meta name="description" content="Understand voter registration, election timelines, and civic processes with ElectWise — an AI assistant powered by Google Gemini. Free, neutral, and factual." />
+    <meta name="keywords" content="election assistant, voter registration, AI election guide, how to vote, election process, Google Gemini" />
+    <meta name="author" content="ElectWise" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (social sharing) -->
+    <meta property="og:title" content="ElectWise — AI Election Assistant" />
+    <meta property="og:description" content="Navigate elections with confidence. Powered by Google Gemini." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://electwise.app" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ElectWise — AI Election Assistant" />
+    <meta name="twitter:description" content="Navigate elections with confidence. Powered by Google Gemini." />
+
+    <!-- Security: basic CSP — allows Google Fonts and Gemini API -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://generativelanguage.googleapis.com;
+        img-src 'self' data: https:;
+      "
+    />
+
+    <!-- Accessibility: theme-color for mobile browsers -->
+    <meta name="theme-color" content="#7c3aed" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts: Inter — preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Efficiency: global font override before any CSS loads -->
+    <style>
+      *, *::before, *::after { font-family: 'Inter', system-ui, sans-serif !important; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+    </style>
+  </head>
+  <body>
+    <!-- Accessibility: noscript fallback -->
+    <noscript>
+      <div style="padding:2rem;text-align:center;font-family:sans-serif;">
+        ElectWise requires JavaScript to run. Please enable JavaScript in your browser.
+      </div>
+    </noscript>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

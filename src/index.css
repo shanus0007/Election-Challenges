@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-polar-purple: #7c3aed;
+  --color-polar-purple-light: #8b5cf6;
+  --color-polar-purple-vivid: #6d28d9;
+  --color-polar-pink: #ec4899;
+  --color-polar-bg: #f5f3ff;
+  --color-polar-bg-2: #ede9fe;
+  --color-polar-text: #1e1b4b;
+  --color-polar-muted: #6b7280;
+  --color-polar-border: rgba(124, 58, 237, 0.15);
+
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-heading: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Inter", system-ui, sans-serif !important;
+    font-weight: 400;
+    background-color: #faf9ff;
+    color: #1e1b4b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Inter", system-ui, sans-serif !important;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  .animate-float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-float-reverse {
+    animation: float 5s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .polar-gradient-bg {
+    background: radial-gradient(ellipse 80% 60% at 60% 0%, rgba(167,139,250,0.35) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 0% 80%, rgba(196,181,253,0.25) 0%, transparent 60%),
+                #faf9ff;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(124,58,237,0.2);
+    border-radius: 10px;
+  }
+}
