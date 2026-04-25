@@ -10,7 +10,7 @@
  * ✅ Responsive     — mobile-first layout, stacked on small screens
  */
 
-import React, { useState, useRef, useEffect, useCallback, memo } from 'react';
+import { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User, Loader2, Sparkles, ChevronRight, AlertCircle, X } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
@@ -145,16 +145,9 @@ const AssistantPage = () => {
     inputRef.current?.focus();
   }, []);
 
-  // Auto-send if navigated here with an initial query from landing page
-  useEffect(() => {
-    if (location.state?.initialQuery) {
-      handleSendMessage();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   // ── Efficiency: useCallback prevents re-creation on every render ──
-  const handleSendMessage = useCallback(async (e) => {
+  const handleSendMessage = async (e) => {
     if (e) e.preventDefault();
 
     // Security: trim + enforce max length
@@ -202,15 +195,26 @@ const AssistantPage = () => {
       // Accessibility: return focus to input after response
       setTimeout(() => inputRef.current?.focus(), 100);
     }
-  }, [inputMessage]);
+  };
+
+  useEffect(() => {
+    if (location.state?.initialQuery) {
+      const timer = setTimeout(() => {
+        handleSendMessage();
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.state?.initialQuery]);
+
 
   // Keyboard: send on Enter (not Shift+Enter)
-  const handleKeyDown = useCallback((e) => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage(e);
     }
-  }, [handleSendMessage]);
+  };
 
   const handleSuggestionClick = useCallback((q) => {
     setInputMessage(q);

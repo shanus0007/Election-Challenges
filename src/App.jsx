@@ -73,33 +73,31 @@ function App() {
   const [theme, setTheme] = useState(() => {
     // Efficiency: read preference once on init, not on every render
     try {
-      return localStorage.getItem('electwise-theme') || 'light';
+      const stored = localStorage.getItem('electwise-theme');
+      if (stored) return stored;
+      
+      // Accessibility: respect OS-level dark mode preference on first load
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark ? 'dark' : 'light';
     } catch {
       return 'light';
     }
   });
 
   useEffect(() => {
-    // Accessibility: respect OS-level dark mode preference on first load
-    const stored = localStorage.getItem('electwise-theme');
-    if (!stored) {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        setTheme('dark');
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    } else {
-      document.documentElement.setAttribute('data-theme', stored);
-    }
-  }, []);
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   // Efficiency: useCallback to avoid re-creating function on every render
   const toggleTheme = useCallback(() => {
     setTheme(prev => {
       const next = prev === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
       // Security: use try/catch — localStorage can throw in private browsing
-      try { localStorage.setItem('electwise-theme', next); } catch {}
+      try { 
+        localStorage.setItem('electwise-theme', next); 
+      } catch {
+        // Silently fail if localStorage is unavailable
+      }
       return next;
     });
   }, []);

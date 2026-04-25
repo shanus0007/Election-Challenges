@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Circle, ChevronRight, Calendar, Users, FileText, CheckSquare, Flag } from 'lucide-react';
 
@@ -100,17 +100,19 @@ const ProcessPage = () => {
           {steps.map((step) => (
             <button
               key={step.id}
-              className={`flex items-center gap-4 px-6 py-5 bg-transparent border-b border-slate-100 text-left transition-colors relative hover:bg-slate-50 ${activeStep === step.id ? 'bg-white hover:bg-white before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-pastel-purple' : ''}`}
+              className={`flex items-center gap-4 px-6 py-5 bg-transparent border-b border-slate-100 text-left transition-colors relative hover:bg-slate-50 ${activeStep === step.id ? 'bg-white hover:bg-white before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-violet-600' : ''}`}
               onClick={() => setActiveStep(step.id)}
+              aria-label={`View ${step.title} details`}
+              aria-current={activeStep === step.id ? 'step' : undefined}
             >
-              <div className={`${activeStep === step.id ? 'text-pastel-purple' : 'text-slate-400'}`}>
+              <div className={`${activeStep === step.id ? 'text-violet-600' : 'text-slate-400'}`} aria-hidden="true">
                 {activeStep > step.id ? <CheckCircle2 size={20} /> : <Circle size={20} />}
               </div>
               <div className="flex-1 flex flex-col">
-                <span className={`font-heading font-bold text-lg ${activeStep === step.id ? 'text-pastel-purple' : 'text-gray-900'}`}>{step.title}</span>
+                <span className={`font-heading font-bold text-lg ${activeStep === step.id ? 'text-violet-600' : 'text-gray-900'}`}>{step.title}</span>
                 <span className="text-xs text-slate-500 font-medium mt-1">{step.date}</span>
               </div>
-              <ChevronRight size={18} className={`transition-all duration-200 ${activeStep === step.id ? 'opacity-100 translate-x-0 text-pastel-purple' : 'opacity-0 -translate-x-2 text-slate-400'}`} />
+              <ChevronRight size={18} aria-hidden="true" className={`transition-all duration-200 ${activeStep === step.id ? 'opacity-100 translate-x-0 text-violet-600' : 'opacity-0 -translate-x-2 text-slate-400'}`} />
             </button>
           ))}
         </div>
@@ -127,7 +129,7 @@ const ProcessPage = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-10">
-                    <div className="w-16 h-16 shrink-0 rounded-2xl bg-pastel-purple/10 flex items-center justify-center text-pastel-purple shadow-sm">
+                    <div className="w-16 h-16 shrink-0 rounded-2xl bg-violet-600/10 flex items-center justify-center text-violet-600 shadow-sm" aria-hidden="true">
                       {step.icon}
                     </div>
                     <div>
@@ -167,9 +169,10 @@ const ProcessPage = () => {
                         Previous
                      </button>
                      <button 
-                        className={`px-6 py-2.5 rounded-full font-bold transition-all bg-pastel-purple text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 ${activeStep === steps.length ? 'opacity-0 pointer-events-none' : 'opacity-100'}`} 
+                        className={`px-6 py-2.5 rounded-full font-bold transition-all bg-violet-600 text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 ${activeStep === steps.length ? 'hidden' : 'inline-block'}`} 
                         disabled={activeStep === steps.length}
                         onClick={() => setActiveStep(prev => Math.min(steps.length, prev + 1))}
+                        aria-label="Next Step"
                      >
                         Next Step
                      </button>

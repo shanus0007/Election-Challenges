@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Sparkles, Shield, Clock, Users, ChevronRight, Star, Vote, FileText, BarChart3 } from 'lucide-react';
+import { ArrowRight, CheckCircle, Sparkles, Shield, Clock, ChevronRight, Star, Vote, FileText, BarChart3 } from 'lucide-react';
 
 const DashboardMockup = () => (
   <div className="relative w-full h-full">
@@ -12,7 +12,7 @@ const DashboardMockup = () => (
         <div className="w-3 h-3 rounded-full bg-red-400" />
         <div className="w-3 h-3 rounded-full bg-yellow-400" />
         <div className="w-3 h-3 rounded-full bg-green-400" />
-        <div className="ml-3 flex-1 bg-white rounded-md px-3 py-1 text-[11px] text-gray-400 border border-gray-200">
+        <div className="ml-3 flex-1 bg-white rounded-md px-3 py-1 text-[11px] text-gray-500 border border-gray-200">
           electwise.app/dashboard
         </div>
       </div>
@@ -33,6 +33,10 @@ const DashboardMockup = () => (
             <div className="text-[10px] text-violet-600 font-semibold mb-1">Registration Status</div>
             <div className="text-[20px] font-black text-violet-700">Verified ✓</div>
           </div>
+          <div className="bg-green-50 rounded-xl p-3 mb-3 border border-green-100">
+            <div className="text-[10px] text-green-600 font-semibold mb-1">Civic Readiness Score</div>
+            <div className="text-[20px] font-black text-green-700">100% Perfect</div>
+          </div>
           <div className="space-y-2">
             {[
               { label: 'Register to Vote', date: 'Oct 7, 2024', done: true },
@@ -42,7 +46,7 @@ const DashboardMockup = () => (
               <div key={item.label} className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2 border border-gray-100">
                 <div>
                   <div className="text-[10px] font-bold text-gray-700">{item.label}</div>
-                  <div className="text-[9px] text-gray-400">{item.date}</div>
+                  <div className="text-[9px] text-gray-500">{item.date}</div>
                 </div>
                 <div className={`w-4 h-4 rounded-full flex items-center justify-center ${item.done ? 'bg-green-100' : 'bg-gray-100'}`}>
                   {item.done && <CheckCircle size={10} className="text-green-600" />}
@@ -65,14 +69,6 @@ const LandingPage = () => {
     navigate('/assistant', { state: { initialQuery: query } });
   };
 
-  const features = [
-    { icon: <Sparkles size={22} className="text-violet-600" />, title: 'AI-Powered Guidance', desc: 'Get instant, accurate answers about voter registration, deadlines, and election procedures powered by Google Gemini.' },
-    { icon: <Clock size={22} className="text-violet-600" />, title: 'Real-Time Timelines', desc: 'Stay on top of every deadline — from registration cut-offs to ballot submission windows — all in one place.' },
-    { icon: <Shield size={22} className="text-violet-600" />, title: 'Trusted & Neutral', desc: 'We provide factual civic information with zero political bias. Your democracy, your choice.' },
-    { icon: <Users size={22} className="text-violet-600" />, title: 'Built for Everyone', desc: 'First-time voter or seasoned citizen — ElectWise adapts to your level of knowledge and guides you step by step.' },
-    { icon: <FileText size={22} className="text-violet-600" />, title: 'Process Breakdowns', desc: 'Detailed, easy-to-follow explanations of every stage: primaries, general elections, recounts, and more.' },
-    { icon: <BarChart3 size={22} className="text-violet-600" />, title: 'Engagement Tracking', desc: 'Track your personal civic milestones and get reminded about upcoming actions you need to take.' },
-  ];
 
   const steps = [
     { num: '01', title: 'Ask Your Question', desc: 'Type anything about the election — registration, deadlines, how voting works, or candidate info.' },
@@ -179,7 +175,7 @@ const LandingPage = () => {
               transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', delay: 0.5 }}
               className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-xl border border-gray-100 px-4 py-3 z-20"
             >
-              <div className="text-[10px] text-gray-500 font-semibold mb-0.5">Election Day Countdown</div>
+              <div className="text-[10px] text-gray-600 font-semibold mb-0.5">Election Day Countdown</div>
               <div className="text-[18px] font-black text-violet-700">14 Days Left</div>
             </motion.div>
           </motion.div>

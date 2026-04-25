@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Vote } from 'lucide-react';
 
@@ -44,6 +44,7 @@ const Layout = () => {
           <Link
             to="/"
             className="flex items-center gap-2 px-4 py-1.5 rounded-full hover:bg-gray-50 transition-colors no-underline"
+            aria-label="ElectWise Home"
           >
             <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-600 to-purple-700 flex items-center justify-center">
               <Vote size={13} className="text-white" />
@@ -98,6 +99,8 @@ const Layout = () => {
             <button
               className="md:hidden w-9 h-9 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle mobile menu"
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
@@ -168,7 +171,7 @@ const Layout = () => {
                 <div key={col.title}>
                   <div className="font-bold text-gray-900 mb-3">{col.title}</div>
                   {col.links.map((l) => (
-                    <a key={l} href="#" className="block text-gray-400 hover:text-violet-600 transition-colors mb-2">
+                    <a key={l} href="#features" className="block text-gray-400 hover:text-violet-600 transition-colors mb-2">
                       {l}
                     </a>
                   ))}
@@ -178,8 +181,8 @@ const Layout = () => {
           </div>
 
           <div className="mt-10 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400">© 2024 ElectWise. All rights reserved.</p>
-            <p className="text-sm text-gray-400">Powered by Google Gemini AI</p>
+            <p className="text-sm text-gray-500">© 2024 ElectWise. All rights reserved.</p>
+            <p className="text-sm text-gray-500">Powered by Google Gemini AI</p>
           </div>
         </div>
       </footer>

@@ -1,0 +1,15 @@
+{
+  "name": "ElectWise",
+  "short_name": "ElectWise",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf9ff",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
